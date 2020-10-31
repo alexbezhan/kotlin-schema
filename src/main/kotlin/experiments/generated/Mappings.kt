@@ -1,5 +1,7 @@
-package experiments
+package experiments.generated
 
+import experiments.ProductTable
+import experiments.VendorTable
 import org.jetbrains.exposed.sql.ResultRow
 import org.jetbrains.exposed.sql.statements.UpdateBuilder
 

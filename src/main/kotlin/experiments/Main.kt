@@ -1,5 +1,9 @@
 package experiments
 
+import experiments.generated.LightProduct
+import experiments.generated.LightProductShape
+import experiments.generated.Product
+import experiments.generated.ProductCreationFields
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.IdTable
 import org.jetbrains.exposed.dao.id.LongIdTable

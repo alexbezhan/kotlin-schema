@@ -1,4 +1,4 @@
-package experiments
+package experiments.generated
 
 interface ProductCreationShape {
     val name: String
@@ -22,7 +22,8 @@ interface ProductShape: MaybeExistingProductShape, ProductCreationShape, LightPr
 }
 
 data class ProductCreationFields(override val name: String, override val description: String) : ProductCreationShape
-data class MaybeExistingProduct(override val id: Long?, override val name: String, override val description: String, override val vendors: List<Vendor>): MaybeExistingProductShape
+data class MaybeExistingProduct(override val id: Long?, override val name: String, override val description: String, override val vendors: List<Vendor>):
+    MaybeExistingProductShape
 data class LightProduct(override val id: Long, override val name: String) : LightProductShape
 data class Product(override val id: Long, override val name: String, override val description: String,
                    override val vendors: List<Vendor>) : ProductShape
