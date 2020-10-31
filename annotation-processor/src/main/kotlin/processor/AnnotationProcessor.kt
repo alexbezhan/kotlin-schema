@@ -1,4 +1,4 @@
-package experiments
+package processor
 
 import java.io.File
 import javax.annotation.processing.*
@@ -7,15 +7,21 @@ import javax.lang.model.element.Element
 import javax.lang.model.element.TypeElement
 import javax.tools.Diagnostic.Kind.ERROR
 
-@SupportedSourceVersion(SourceVersion.RELEASE_8)
-@SupportedAnnotationTypes("org.kotlin.annotationProcessor.TestAnnotation")
-@SupportedOptions(AnnotationProcesssor.KAPT_KOTLIN_GENERATED_OPTION_NAME)
-class AnnotationProcesssor : AbstractProcessor() {
+@Target(AnnotationTarget.FIELD)
+@Repeatable
+@Retention(AnnotationRetention.SOURCE)
+annotation class Shapes(val names: Array<String>)
+
+
+@SupportedSourceVersion(SourceVersion.RELEASE_11)
+@SupportedAnnotationTypes("processor.Shapes")
+@SupportedOptions(AnnotationProcessor.KAPT_KOTLIN_GENERATED_OPTION_NAME)
+class AnnotationProcessor : AbstractProcessor() {
     companion object {
         const val KAPT_KOTLIN_GENERATED_OPTION_NAME = "kapt.kotlin.generated"
     }
     override fun process(annotations: MutableSet<out TypeElement>, roundEnv: RoundEnvironment): Boolean {
-        val annotatedElements = roundEnv.getElementsAnnotatedWith(Shape::class.java)
+        val annotatedElements = roundEnv.getElementsAnnotatedWith(Shapes::class.java)
         if (annotatedElements.isEmpty()) return false
 
         val kaptKotlinGeneratedDir = processingEnv.options[KAPT_KOTLIN_GENERATED_OPTION_NAME] ?: run {
@@ -24,6 +30,9 @@ class AnnotationProcesssor : AbstractProcessor() {
         }
 
         val generatedCode: String = ""
+//        annotatedElements.map{annotatedElement ->
+//            (annotatedElement as? com.sun.tools.javac.code.Symbol.VarSymbol)?.metadata?.declarationAttributes?.filter{it.type.get}?.map{it.values}
+//        }
 
         File(kaptKotlinGeneratedDir, "testGenerated.kt").apply {
             parentFile.mkdirs()

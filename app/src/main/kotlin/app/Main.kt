@@ -1,29 +1,23 @@
-package experiments
+package app
 
-import experiments.generated.LightProduct
-import experiments.generated.LightProductShape
-import experiments.generated.Product
-import experiments.generated.ProductCreationFields
+import app.generated.LightProduct
+import app.generated.LightProductShape
+import app.generated.Product
+import app.generated.ProductCreationFields
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.IdTable
 import org.jetbrains.exposed.dao.id.LongIdTable
 import org.jetbrains.exposed.sql.Column
-
-@Target(AnnotationTarget.FIELD)
-@Repeatable
-@Retention(AnnotationRetention.SOURCE)
-annotation class Shape(val name: String)
+import processor.Shapes
 
 object ProductTable : IdTable<Long>("products") {
-    @Shape("LightProduct")
     override val id: Column<EntityID<Long>> = long("id").autoIncrement().entityId()
     override val primaryKey by lazy { super.primaryKey ?: PrimaryKey(id) }
 
-    @Shape("LightProduct")
-    @Shape("NewProduct")
+    @Shapes(["ProductCreationShape"])
     val name = varchar("name", 255)
 
-    @Shape("NewProduct")
+    @Shapes(["ProductCreationShape"])
     val description = varchar("description", 255)
 }
 

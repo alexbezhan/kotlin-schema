@@ -1,6 +1,6 @@
-package experiments
+package app
 
-import experiments.generated.*
+import app.generated.*
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.batchInsert
 import org.jetbrains.exposed.sql.insertAndGetId

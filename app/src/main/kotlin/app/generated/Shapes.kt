@@ -1,4 +1,4 @@
-package experiments.generated
+package app.generated
 
 interface ProductCreationShape {
     val name: String
