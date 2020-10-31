@@ -11,13 +11,14 @@ import org.jetbrains.exposed.sql.Column
 import processor.Shapes
 
 object ProductTable : IdTable<Long>("products") {
+    @Shapes(["MaybeExistingProductShape", "LightProductShape", "ProductShape"])
     override val id: Column<EntityID<Long>> = long("id").autoIncrement().entityId()
     override val primaryKey by lazy { super.primaryKey ?: PrimaryKey(id) }
 
-    @Shapes(["ProductCreationShape"])
+    @Shapes(["ProductCreationShape", "MaybeExistingProductShape", "LightProductShape", "ProductShape"])
     val name = varchar("name", 255)
 
-    @Shapes(["ProductCreationShape"])
+    @Shapes(["ProductCreationShape", "MaybeExistingProductShape", "ProductShape"])
     val description = varchar("description", 255)
 }
 
