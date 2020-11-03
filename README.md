@@ -24,3 +24,5 @@ We quickly realize that:
 - Clojure [Schema](https://github.com/plumatic/schema) (see [Rich Hickey talk](https://www.youtube.com/watch?v=YR5WdGrpoug) and this [article](https://medium.com/@functionalhuman/functional-programing-with-cats-105d666b260e))
 - [Elixir](https://elixir-lang.org/) type system
 
+### Ideas to explore:
+- Look at [Manifold](http://manifold.systems/docs.html#structural-interfaces), maybe it makes sense to integrate with them or at least borrow some ideas
