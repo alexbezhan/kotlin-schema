@@ -26,3 +26,4 @@ We quickly realize that:
 
 ### Ideas to explore:
 - Look at [Manifold](http://manifold.systems/docs.html#structural-interfaces), maybe it makes sense to integrate with them or at least borrow some ideas
+- [Structural typing in Java](https://github.com/alexbezhan/stjava)
